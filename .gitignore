@@ -1,0 +1,11 @@
+# Ignore everything
+/*
+
+# Do not ignore the parent directory contents
+!/*
+
+# Ignore all subdirectories
+/*/*
+
+# Unignore specific subdirectories that start with "task" followed by a number
+!/*/task*/

@@ -1,11 +1,10 @@
 # Ignore everything
-/*
+*
 
-# Do not ignore the parent directory contents
-!/*
+# Allow README.md
+!/README.md
 
-# Ignore all subdirectories
-/*/*
-
-# Unignore specific subdirectories that start with "task" followed by a number
-!/*/task*/
+# Allow all task directories and their contents
+!/python/
+!/python/**/
+!/python/**/task*/**

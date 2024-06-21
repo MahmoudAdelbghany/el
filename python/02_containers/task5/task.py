@@ -8,3 +8,4 @@ ip = response.json()['ip']
 response = requests.get('https://ipinfo.io/'+ip+'/geo')
 
 pprint(response.json())
+

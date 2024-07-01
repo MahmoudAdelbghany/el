@@ -10,3 +10,6 @@
 !/python/**/task*/**
 !/python/project/
 !/python/project/**
+python/project/audio.wav
+python/project/result.txt
+.gitignore

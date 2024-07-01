@@ -8,7 +8,10 @@ import datetime
 from edge_tts import VoicesManager
 import numpy as np
 from playsound import playsound
-from fuzzywuzzy import fuzz
+from gemini import gemi
+
+
+commands = ["asking about time", "invalid"]
 class VoiceAssistant:
     def __init__(self, model_size="medium", threshold=2500, silence_limit=1.5):
         self.model = whisper.load_model(model_size)
@@ -50,7 +53,7 @@ class VoiceAssistant:
         wave_file.writeframes(b''.join(frames))
         wave_file.close()
 
-        result = self.model.transcribe("audio.wav")
+        result = self.model.transcribe("audio.wav", language="ar")
         with open("result.txt", "w") as result_file:
             result_file.write(result["text"])
         print(result["text"])
@@ -64,9 +67,7 @@ class VoiceAssistant:
         playsound(OUTPUT_FILE)
 
 
-def fuzzy_search(text, phrases):
-    best_match = max(phrases, key=lambda phrase: fuzz.ratio(text, phrase))
-    return best_match
+
 
 
 if __name__ == "__main__":
@@ -75,16 +76,6 @@ if __name__ == "__main__":
     assistant.listen()
     with open("result.txt", "r") as f:
         text = f.read()
-    # asyncio.run(assistant.speak("كله تمام يا كبير"))
-    # assistant.listen()
-    # asyncio.run(assistant.speak("يا عم غور من وشي "))
-commands = ["الوقت ايه", "الساعة دلوقتي كام", "الساعة كام"]
-best_match = fuzzy_search(text, commands)
-
-if best_match in commands:
-    now = datetime.datetime.now()
-    current_time = now.strftime("%H:%M:%S")
-    asyncio.run(assistant.speak("الوقت الآن هو " + current_time))
-else:
-    asyncio.run(assistant.speak("عذراً، لا أستطيع مساعدتك في ذلك."))
+    command = gemi.get_command(text, commands)
+    print(command)
 

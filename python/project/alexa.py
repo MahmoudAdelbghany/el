@@ -78,4 +78,8 @@ if __name__ == "__main__":
         text = f.read()
     command = gemi.get_command(text, commands)
     print(command)
+    if command == "asking about time":
+        now = datetime.datetime.now()
+        time = now.strftime("%H:%M")
+        asyncio.run(assistant.speak(f"الساعة الان {time}"))
 

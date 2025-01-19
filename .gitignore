@@ -11,3 +11,9 @@
 !/python/project/
 !/python/project/**
 
+!/C++/
+!/C++/**/
+!/C++/**/task*/**
+!/C++/project/
+!/C++/project/**
+**/a.out
